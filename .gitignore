@@ -149,3 +149,6 @@ mcp-bridge.js
 .mcp.json
 package.json
 package-lock.json
+
+# README
+README.md
