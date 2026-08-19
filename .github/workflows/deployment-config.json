@@ -1,0 +1,14 @@
+[
+  {
+    "name": "119.205.210.52",
+    "ip": "127.0.0.1",
+    "username": "newsis",
+    "port": "22",
+    "beforeHooks": "",
+    "afterHooks": "",
+    "backbeforeHooks": "",
+    "backafterHooks": "",
+    "path": "/home/newsis/sites/aptlab/htdocs",
+    "gitDownFolder": "/home/newsis/deployGithub"
+  }
+]
