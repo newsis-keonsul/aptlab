@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
+  var heroHeader = document.querySelector('header');
+  if (heroHeader) heroHeader.style.backgroundImage = "linear-gradient(90deg,rgba(8,17,34,.48),rgba(9,19,39,.38) 34%,rgba(9,19,39,.08) 69%),url('hero-station-mosaic.png')";
+  var heroHeading = document.querySelector('.hero h1');
+  if (heroHeading) heroHeading.innerHTML = '추석 열차 승차권 <em>7일부터</em><br><em>일반예매</em> 시작';
+  var heroIntro = document.querySelector('.hero p');
+  if (heroIntro) heroIntro.innerHTML = '예매 일정과 꼭 알아둬야 할 내용까지<br>놓치기 쉬운 명절 승차권 예매 핵심만 담았습니다.';
+  var heroCredit = document.querySelector('.credit');
+  if (heroCredit) heroCredit.innerHTML = 'NEWSIS · APTLAB 001<br>2026.09.05.';
+  var overviewHeading = document.querySelector('#overview h2');
+  if (overviewHeading) overviewHeading.innerHTML = '코레일, 추석 승차권 예매 시작';
+  var overviewLead = document.querySelector('.overview-copy > p');
+  if (overviewLead) overviewLead.innerHTML = '한국철도공사(코레일)는 지난 3일부터 추석 명절 승차권 예매를 시작했다.<br>오는 <strong style="color:#2159d6">23일부터 27일까지</strong> 닷새간 운행하는 열차가 대상이다.';
+
   var routesSection = document.getElementById('routes');
   if (routesSection) {
     routesSection.style.borderBottom = '0';
@@ -81,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         {
           title: '<strong style="color:#2159d6">결제 기간</strong> 확인',
-          body: '<p style="margin:28px 0 18px">추석 승차권 결제는 예매와 별도로 진행한다.</p><div style="overflow-x:auto"><table style="width:100%;min-width:580px;border-collapse:collapse;background:rgba(255,255,255,.7);font-size:14px;line-height:1.55"><thead><tr><th style="padding:11px 10px;border-bottom:1px solid #cdd8e5;text-align:left">구분</th><th style="padding:11px 10px;border-bottom:1px solid #cdd8e5;text-align:left">결제·예매 기간</th><th style="padding:11px 10px;border-bottom:1px solid #cdd8e5;text-align:left">방법</th></tr></thead><tbody><tr><th style="padding:12px 10px;border-bottom:1px solid #dce4ec;text-align:left;color:#2159d6">사전예매</th><td style="padding:12px 10px;border-bottom:1px solid #dce4ec">12일 0시 ~ 18일 0시</td><td style="padding:12px 10px;border-bottom:1px solid #dce4ec">고객센터 ARS(☏1588-7788)<br>또는 전국 역 창구</td></tr><tr><th style="padding:12px 10px;border-bottom:1px solid #dce4ec;text-align:left;color:#2159d6">일반예매</th><td style="padding:12px 10px;border-bottom:1px solid #dce4ec">12일 0시 ~ 15일 0시</td><td style="padding:12px 10px;border-bottom:1px solid #dce4ec">‘코레일+’ · 홈페이지</td></tr><tr><th style="padding:12px 10px;text-align:left;color:#2159d6">잔여석 예매</th><td style="padding:12px 10px">11일 오후 3시부터 상시</td><td style="padding:12px 10px">‘코레일+’ · 코레일 홈페이지<br>· 역 창구</td></tr></tbody></table></div><div style="margin-top:18px;padding-top:14px;border-top:1px solid #d5dde7;font-size:14px;line-height:1.7"><p style="margin:0">사전예매 승차권은 신분증(임산부는 산모수첩 등 임신·출산 증명서) 지참 시에만 발권할 수 있다.</p><p style="margin:8px 0 0">보호자가 예매 고객의 신분증을 지참할 경우 대리 결제 및 발권이 가능하다.</p><p style="margin:8px 0 0">결제하지 않을 경우 예매한 승차권은 자동 취소된다.</p></div>'
+          body: '<p style="margin:28px 0 18px">추석 승차권 결제는 예매와 별도로 진행한다.</p><div style="overflow-x:auto"><table style="width:100%;min-width:580px;border-collapse:collapse;background:rgba(255,255,255,.7);font-size:14px;line-height:1.55"><thead><tr><th style="padding:11px 10px;border-bottom:1px solid #cdd8e5;text-align:left">구분</th><th style="padding:11px 10px;border-bottom:1px solid #cdd8e5;text-align:left">결제기간</th><th style="padding:11px 10px;border-bottom:1px solid #cdd8e5;text-align:left">방법</th></tr></thead><tbody><tr><th style="padding:12px 10px;border-bottom:1px solid #dce4ec;text-align:left;color:#2159d6">사전예매</th><td style="padding:12px 10px;border-bottom:1px solid #dce4ec">12일 0시 ~ 18일 0시</td><td style="padding:12px 10px;border-bottom:1px solid #dce4ec">고객센터 ARS(☏1588-7788)<br>또는 전국 역 창구</td></tr><tr><th style="padding:12px 10px;border-bottom:1px solid #dce4ec;text-align:left;color:#2159d6">일반예매</th><td style="padding:12px 10px;border-bottom:1px solid #dce4ec">12일 0시 ~ 15일 0시</td><td style="padding:12px 10px;border-bottom:1px solid #dce4ec">‘코레일+’ · 홈페이지</td></tr><tr><th style="padding:12px 10px;text-align:left;color:#2159d6">잔여석 예매</th><td style="padding:12px 10px">11일 오후 3시부터 상시</td><td style="padding:12px 10px">‘코레일+’ · 코레일 홈페이지<br>· 역 창구</td></tr></tbody></table></div><div style="margin-top:18px;padding-top:14px;border-top:1px solid #d5dde7;font-size:14px;line-height:1.7"><p style="margin:0">사전예매 승차권은 신분증(임산부는 산모수첩 등 임신·출산 증명서) 지참 시에만 발권할 수 있다.</p><p style="margin:8px 0 0">보호자가 예매 고객의 신분증을 지참할 경우 대리 결제 및 발권이 가능하다.</p><p style="margin:8px 0 0">결제하지 않을 경우 예매한 승차권은 자동 취소된다.</p></div>'
         }
       ].forEach(function (part, index) {
         var article = document.createElement('article');
@@ -132,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
           }
           if (serviceParagraphs[1]) {
-            serviceParagraphs[1].innerHTML = '<strong style="color:#2159d6">내일부터 이틀간</strong> 서비스를 이용할 수 있다.';
+            serviceParagraphs[1].innerHTML = '<strong style="color:#2159d6">이번 주말 동안</strong> 서비스를 이용할 수 있다.';
           }
           if (serviceParagraphs[2]) {
             serviceParagraphs[2].innerHTML = '사전 체험 서비스에서는 이용 구간 · 출발일 · 인원 등 <strong style="color:#2159d6">여행 정보를 미리 등록</strong>할 수 있다.';
@@ -151,8 +164,14 @@ document.addEventListener('DOMContentLoaded', function () {
               if (cell.innerHTML.indexOf('‘코레일+’') !== -1) {
                 cell.innerHTML = cell.innerHTML.replace(/‘코레일\+’/g, '코레일+');
               }
+              if (cell.innerHTML.indexOf('· 역 창구') !== -1) {
+                cell.innerHTML = cell.innerHTML.replace('· 역 창구', '· 전국 역 창구');
+              }
+              if (cell.textContent === '코레일+ · 홈페이지') {
+                cell.textContent = '코레일+ · 코레일 홈페이지';
+              }
               if (cell.textContent.indexOf('고객센터 ARS(☏1588-7788)') !== -1) {
-                cell.innerHTML = '고객센터 ARS(☏1588-7788)<br>· 전국 역 창구';
+                cell.innerHTML = '코레일+ · 코레일 홈페이지<br>고객센터 ARS(☏1588-7788) · 전국 역 창구';
               }
             });
           }
@@ -242,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         {
           title: '운임 인하',
-          body: '운임은 기존 대비 평균 <strong style="color:#2159d6">10% 낮춘다.</strong><br><span style="display:block;margin-top:7px;font-size:14px">서울~부산 59,800원 → 54,400원(-5,400원)<br>용산~광주송정 46,800원 → 42,000원(-4,800원)</span>'
+          body: 'KTX 운임은 SRT 운임 기준에 맞춰 평균 <strong style="color:#2159d6">10% 저렴한 수준</strong>으로 낮아진다.<br><span style="display:block;margin-top:7px;font-size:14px">서울~부산 59,800원 → 54,400원(-5,400원)<br>용산~광주송정 46,800원 → 42,000원(-4,800원)</span>'
         },
         {
           title: '혜택 확대',
@@ -327,7 +346,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var phoneNotice = scheduleTable && scheduleTable.nextElementSibling;
   var generalBooking = details && details.querySelector('p');
   if (phoneNotice && generalBooking && notice) {
-    phoneNotice.innerHTML = '어제(3일)부터 이틀간 진행된 교통약자 대상 사전예매는<br><span style="color:#2159d6">철도고객센터(☏1455-8545)</span> 전화 예매도 가능했다.';
+    phoneNotice.innerHTML = '지난 3일부터 이틀간 진행된 교통약자 대상 사전예매는<br><span style="color:#2159d6">철도고객센터(☏1455-8545)</span> 전화 예매도 가능했다.';
     phoneNotice.style.cssText = 'width:min(1180px,calc(100% - 40px));margin:22px auto 0;color:#17233c;font-size:18px;font-weight:400;line-height:1.8;text-align:center';
     generalBooking.innerHTML = '일반예매는 <span style="color:#2159d6">전용 웹페이지</span>에서만 할 수 있다.';
     generalBooking.style.cssText = 'width:min(1180px,calc(100% - 40px));margin:8px auto 0;color:#17233c;font-size:18px;font-weight:400;line-height:1.8;text-align:center';
