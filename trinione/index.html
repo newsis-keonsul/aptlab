@@ -3868,4 +3868,59 @@ FINAL RECOVERY PATCH
     }))).observe(document.body, { childList:true, subtree:true });
   })();
 </script>
+<script>
+  /* 모바일 자동재생 보완: 음소거·인라인 속성을 실제 태그에 고정하고, 화면에 들어온 영상만 재생합니다. */
+  (() => {
+    const prepare = video => {
+      if (!video || video.dataset.mobileAutoplayReady) return;
+      video.dataset.mobileAutoplayReady = 'true';
+      video.autoplay = true;
+      video.loop = true;
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.setAttribute('autoplay', '');
+      video.setAttribute('muted', '');
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', '');
+      video.setAttribute('preload', 'auto');
+      video.removeAttribute('controls');
+      const play = () => video.play().catch(() => {});
+      video.addEventListener('loadeddata', play, { once:true });
+      video.addEventListener('canplay', play, { once:true });
+      play();
+    };
+
+    const playVisible = video => {
+      prepare(video);
+      video.play().catch(() => {});
+    };
+
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) playVisible(entry.target);
+      else entry.target.pause();
+    }), { threshold:.08, rootMargin:'160px 0px' });
+
+    const bind = root => root.querySelectorAll('video').forEach(video => {
+      prepare(video);
+      observer.observe(video);
+    });
+
+    const start = () => bind(document);
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once:true });
+    else start();
+    new MutationObserver(records => records.forEach(record => record.addedNodes.forEach(node => {
+      if (node.nodeType !== 1) return;
+      if (node.matches?.('video')) { prepare(node); observer.observe(node); }
+      bind(node);
+    }))).observe(document.documentElement, { childList:true, subtree:true });
+
+    const resume = () => document.querySelectorAll('video').forEach(video => {
+      if (video.getBoundingClientRect().bottom > 0 && video.getBoundingClientRect().top < innerHeight) playVisible(video);
+    });
+    addEventListener('pageshow', resume);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) resume(); });
+    document.addEventListener('touchstart', resume, { once:true, passive:true });
+  })();
+</script>
 </html>
