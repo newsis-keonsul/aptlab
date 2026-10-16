@@ -39,7 +39,6 @@
   const status = document.getElementById('trend-status');
   const buttons = [...root.querySelectorAll('[data-era]')];
   const options = root.querySelector('.trend-case-options');
-  const reducedMotion = matchMedia('(prefers-reduced-motion:reduce)');
   let eraKey = 'eighties';
   let caseIndex = 0;
   let request = 0;
@@ -76,8 +75,11 @@
       video.load();
     } else {
       video.setAttribute('aria-label', item.alt);
+      video.defaultMuted = true;
+      video.muted = true;
+      video.volume = 0;
       video.onloadedmetadata = () => {
-        if (serial !== request || video.hidden || reducedMotion.matches || document.hidden) return;
+        if (serial !== request || video.hidden || document.hidden) return;
         const bounds = video.getBoundingClientRect();
         const visible = Math.min(bounds.bottom, innerHeight) - Math.max(bounds.top,70);
         if (visible > bounds.height * .18) video.play().catch(() => {});

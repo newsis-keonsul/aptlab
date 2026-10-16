@@ -18,8 +18,20 @@
     parentsTrack.style.setProperty('--parents-blend', blend.toFixed(4));
   };
   const videos = [...document.querySelectorAll('video.photo-media')];
+  // 모든 현장 영상은 소리 없이 재생합니다. 컨트롤 조작 뒤에도 음성이 나오지 않게 유지합니다.
+  const muteVideo = video => {
+    video.defaultMuted = true;
+    if (!video.muted) video.muted = true;
+    if (video.volume !== 0) video.volume = 0;
+    video.playsInline = true;
+  };
+  videos.forEach(video => {
+    muteVideo(video);
+    video.addEventListener('volumechange', () => muteVideo(video));
+  });
   // 시대별 탐색·최근 사례·엔딩을 포함해 동시에 재생되는 영상은 하나만 허용합니다.
   videos.forEach(video => video.addEventListener('play', () => {
+    muteVideo(video);
     if (video.hidden || !video.getClientRects().length) { video.pause(); return; }
     videos.forEach(other => { if (other !== video && !other.paused) other.pause(); });
   }));
@@ -98,14 +110,17 @@
   if (reducedMotion.addEventListener) reducedMotion.addEventListener('change', configureMotion);
 
   // 현장 영상은 보이는 동안만 재생합니다. 제어 버튼으로 직접 정지할 수 있습니다.
-  // 동작 줄이기 설정에서는 자동 재생하지 않으며 브라우저의 재생 차단에도 대응합니다.
+  // 자동재생은 화면 안의 영상에만 적용해 숨긴 원본의 불필요한 로딩을 막습니다.
   if (videos.length && 'IntersectionObserver' in window) {
     const visibleVideos = new Set();
     const syncVideo = video => {
-        if (visibleVideos.has(video) && isVideoOnScreen(video) && !document.hidden && !reducedMotion.matches) {
+        const shouldPlay = visibleVideos.has(video) && !video.hidden && video.getClientRects().length > 0 && isVideoOnScreen(video) && !document.hidden;
+        video.autoplay = shouldPlay;
+        muteVideo(video);
+        if (shouldPlay) {
           video.play().then(() => {
             // 재생 준비 중 화면 밖으로 이동했을 때 늦게 재생되는 경우도 정지합니다.
-            if (!visibleVideos.has(video) || !isVideoOnScreen(video) || document.hidden || reducedMotion.matches) video.pause();
+            if (!visibleVideos.has(video) || video.hidden || !video.getClientRects().length || !isVideoOnScreen(video) || document.hidden) video.pause();
           }).catch(() => {});
         } else {
           video.pause();
@@ -121,7 +136,7 @@
     }, { threshold: [0, .18] });
     videos.forEach(video => videoObserver.observe(video));
     document.addEventListener('visibilitychange', syncVideos);
-    if (reducedMotion.addEventListener) reducedMotion.addEventListener('change', syncVideos);
+    window.addEventListener('pageshow', syncVideos);
   }
 
   // Web Share API → URL 복사 → 직접 선택 가능한 링크. 개인 결과 이미지를 생성하지 않습니다.
