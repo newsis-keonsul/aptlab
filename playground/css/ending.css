@@ -1,0 +1,13 @@
+/* 영상은 원래 크기와 재생 방식을 유지하고, 엔딩 문구는 영상 아래 일반 흐름에 배치합니다. */
+#timeline .ending-copy { max-width:900px; margin:0 auto 48px; text-align:center; color:#51594a; }
+#timeline .ending-copy p { margin:0; letter-spacing:-.035em; font-size:clamp(16px,1.6vw,22px); font-weight:600; line-height:1.6; }
+#timeline .ending-copy .ending-bridge { margin-top:10px; font-weight:500; transition-delay:.12s; }
+#timeline .ending-copy .ending-question { margin-top:26px; font-size:clamp(26px,3vw,44px); font-weight:800; line-height:1.4; letter-spacing:-.05em; transition-delay:.24s; }
+#timeline .ending-meta { margin:0 auto 42px; }
+#timeline .ending-meta > small { margin-top:0; }
+@media (max-width:700px) {
+  #timeline .ending-copy { margin-bottom:36px; }
+  #timeline .ending-copy p { font-size:14px; }
+  #timeline .ending-copy .ending-question { font-size:clamp(22px,5.8vw,30px); margin-top:22px; }
+  #timeline .ending-meta { margin-bottom:30px; }
+}

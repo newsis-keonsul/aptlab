@@ -1,0 +1,70 @@
+/* 기존 기사 스타일을 그대로 두고 클릭 타임라인과 수동 영상 선택만 확장합니다. */
+.section[hidden] { display:none; }
+.data-section .data-bridge { margin:0 auto; padding-top:0; border-top:0; }
+.trend-timeline { display:block; padding-top:55px; padding-bottom:45px; }
+.trend-timeline > .section-marker { margin-bottom:20px; }
+.trend-timeline > h2 { font-size:clamp(30px,3.2vw,45px); }
+.trend-era-list { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; list-style:none; padding:0; margin:28px 0 32px; border:0; max-width:none; }
+.trend-era-list::before { display:none; }
+.trend-era-list li { min-width:0; border:0; }
+.trend-era-list li::after, .trend-era-list li:not(:last-child)::after { display:none; }
+.trend-era-list button { position:relative; width:100%; height:100%; text-align:left; padding:12px 0 16px; border:0; border-bottom:1px solid #bdc3b3; background:transparent; color:#6b735f; cursor:pointer; }
+.trend-era-list button::before { display:none; }
+.trend-era-list strong { display:block; font-size:clamp(21px,2.05vw,29px); line-height:1.4; font-weight:500; letter-spacing:-.05em; font-variant-numeric:tabular-nums; }
+.trend-era-list button > span { display:block; margin-top:8px; font-size:12px; line-height:1.7; }
+.trend-era-list button[aria-pressed="true"] { color:#303c27; border-bottom:3px solid #3b4930; padding-bottom:14px; }
+.trend-era-list button[aria-pressed="true"]::before { background:#3b4930; }
+.trend-era-list button[aria-pressed="true"] strong { font-weight:800; }
+.trend-era-list button:disabled { cursor:default; }
+/* 첫 기록 영상은 원본 16:9 비율로 표시하고, 사진은 기존 프레임을 유지합니다. */
+.trend-frame.trend-frame-archive { aspect-ratio:16 / 9; max-height:none; }
+.trend-media:has(.trend-frame-archive) figcaption > span { font-family:var(--sans); font-size:15px; font-weight:600; }
+.trend-media:has(.trend-frame-archive) figcaption > small { font-family:var(--sans); font-size:11px; color:var(--muted); }
+.trend-panel { min-width:0; }
+.trend-panel h3 { font-size:clamp(23px,2.25vw,30px); letter-spacing:-.045em; line-height:1.4; }
+.trend-description { max-width:900px; font-size:15px; line-height:1.7; margin:10px 0 16px; color:#515b43; }
+.trend-frame { height:auto; aspect-ratio:2 / 1; max-height:65svh; background:#dfe1d8; }
+.trend-frame .photo-media { object-fit:contain; }
+.trend-frame [hidden], .trend-media-controls[hidden], .recent-gallery [hidden] { display:none; }
+.trend-media figcaption > span { font-family:var(--sans); font-size:12px; }
+.trend-media-controls { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-top:12px; }
+.trend-case-options { display:flex; flex-wrap:wrap; gap:8px; }
+.trend-case-options button { border:1px solid #bdc3b3; padding:9px 12px; background:transparent; color:#5d684e; font-size:11px; line-height:1.5; cursor:pointer; }
+.trend-case-options button[aria-pressed="true"] { border-color:#3b4930; color:#303c27; background:#e4e7dd; font-weight:700; }
+.trend-arrows { display:flex; align-items:center; gap:12px; flex-shrink:0; }
+.trend-arrows button, .recent-gallery-controls button { border:1px solid currentColor; width:44px; height:44px; background:transparent; color:inherit; font-size:20px; cursor:pointer; }
+.trend-counter { font-size:11px; color:#657154; font-variant-numeric:tabular-nums; }
+.trend-note { margin-top:12px; font-size:11px; line-height:1.8; color:#717b62; }
+.trend-panel[aria-busy="true"] .trend-frame { opacity:.6; }
+.trend-frame { transition:opacity .25s; }
+.specialization .era-small small { display:block; margin-top:12px; font-size:17px; line-height:1.5; letter-spacing:-.03em; }
+.recent-gallery { display:flex; flex-direction:column; justify-content:center; gap:20px; min-height:calc(100svh - 70px); padding:24px 0; }
+.recent-gallery .landscape-video-scene { width:100%; min-height:0; padding:0; border:0; }
+.recent-gallery .photo-frame { max-height:calc(100svh - 245px); }
+.recent-gallery-controls { display:flex; align-items:center; justify-content:flex-end; gap:16px; color:#bdc6af; }
+.recent-counter { font-size:12px; font-variant-numeric:tabular-nums; }
+.play-contrast .contrast-columns { grid-template-columns:1fr; max-width:700px; }
+@media (max-width:700px) {
+  .trend-media:has(.trend-frame-archive) figcaption > span { font-size:13px; }
+  .trend-media:has(.trend-frame-archive) figcaption > small { font-size:10px; }
+  .trend-timeline { display:block; padding-top:32px; padding-bottom:45px; }
+  .trend-timeline > .section-marker { margin-bottom:20px; }
+  .trend-era-list { display:flex; gap:18px; margin:20px 0; padding:3px 0; overflow-x:auto; scroll-snap-type:x proximity; scrollbar-width:thin; }
+  .trend-era-list::before, .trend-era-list button::before { display:none; }
+  .trend-era-list li { flex:0 0 170px; scroll-snap-align:start; }
+  .trend-era-list strong { font-size:20px; }
+  .trend-era-list button > span { font-size:11px; margin-top:8px; }
+  .trend-era-list button { padding:12px 0 14px; border-bottom:1px solid #bdc3b3; }
+  .trend-era-list button[aria-pressed="true"] { border-bottom:3px solid #3b4930; padding-bottom:12px; }
+  .trend-panel h3 { font-size:24px; }
+  .trend-description { font-size:14px; margin-top:13px; }
+  .trend-frame { height:auto; aspect-ratio:4 / 3; max-height:60svh; }
+  .trend-media-controls { flex-direction:column; align-items:stretch; gap:16px; }
+  .trend-arrows { justify-content:flex-end; }
+  .trend-case-options button { font-size:10px; }
+  .trend-note { font-size:10px; }
+  .recent-gallery { min-height:calc(100svh - 60px); }
+  .recent-gallery .photo-frame { max-height:calc(100svh - 210px); }
+  .recent-counter { font-size:11px; }
+}
+@media (prefers-reduced-motion:reduce) { .trend-frame { transition:none; } }
